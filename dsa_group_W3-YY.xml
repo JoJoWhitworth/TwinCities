@@ -14,7 +14,7 @@
 
     <!-- Group Section -->
     <group id="w1-ZZ">
-        <member id="18024016" name="Genius Kimu"/>
+       
         <member id="17024590" name="Joe Whitworth "/>
         <workshop>
             <daytime>9:30</daytime> // UPDATE ME
@@ -23,7 +23,7 @@
         </workshop>
         <!-- Each student should have contributed to one or more components -->
         <component type="Database Design">
-        <member id="18024016" name="Genius Kimu"/>
+
         <member id="17024590" name="Joe Whitworth "/>
             <!-- the following text fields allow for between 80 and 5000 characters -->
             <description> 
