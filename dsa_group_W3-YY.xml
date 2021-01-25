@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group_metafile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="http://isa.cems.uwe.ac.uk/~p-chatterjee/2019-20/modules/dsa/assignment/dsa_group_schema.xsd">
+    <!--  -->
+
+    <!-- Assignment metadata  -->
+    <module id="UFCFV4-30-2" acronymn="DSA">
+        <title>Data Schemas &amp; Applications</title>
+        <year>2019-20</year>
+        <hand_in>2020-03-12</hand_in>
+        <spec_url>https://fetstudy.uwe.ac.uk/~p-chatterjee/2019-20/modules/dsa/assignment/</spec_url>
+    </module>
+    <!-- end of metadata section -->
+
+    <!-- Group Section -->
+    <group id="w1-ZZ">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+        <workshop>
+            <daytime>9:30</daytime> // UPDATE ME
+            <tutor>PC</tutor>
+            <tutor>GW</tutor>
+        </workshop>
+        <!-- Each student should have contributed to one or more components -->
+        <component type="Database Design">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+            <!-- the following text fields allow for between 80 and 5000 characters -->
+            <description> 
+				Conceptual ER model: "Twin towns or sister cities are a form of legal and social agreement between towns [and] cities ... in geographically and politically distinct areas to promote cultural and commercial ties. 
+				The modern concept of town twinning, conceived after the Second World War in 1947, was intended to foster friendship and understanding between different cultures and between former foes as an act of peace and reconciliation and to encourage trade and tourism.
+				In recent times, town twinning has increasingly been used to form strategic international business links between member cities." In order to represent twin cities we have to design a conceptual enitity relationship model, 
+				". A conceptual model is developed to present an overall picture of the system by recognizing the business objects involved. It defines what entities exist, NOT which tables." In this case we simply want to gather the data items associated with town or city. 
+
+				Logical ER model: In this model is a detailed version of our conceptual model, "by defining explicitly the columns in each entity and introducing operational and transactional entities. 
+				Although a logical data model is still independent of the actual database system in which the database will be created, you can still take that into consideration if it affects the design." 
+				This model should resolve many to many relationships into a low level model, showing all primary/foreign keys and attributes.
+
+			</description>
+            <problems> 
+				 Conceptual ER model: The model should show (Entities, Attributes, Relationships) with at least 4 entities & sufficient attributes (at least 8 for a city/town and 8 for places of interest in those cities/towns).
+				 Logical ER model: The model should show all Primary and Foreign Keys as well as all attribute types with their ranges/lengths.
+			</problems>
+            <solutions> 
+				Start Conceptual ER model:  
+				
+					Entity    :
+						city  : (To hold the details that define the city),
+						poi   : (To hold the details of the points of interest associated with the city entity)
+						cat   : (To hold the details of the categories associated with the poi entity) 
+						image : (To hold a cities point of interest images),
+								   
+					Attributes:
+						city  :
+							  city_id 
+							  name
+							  country
+							  population
+							  long
+							  lat
+							  currency
+						poi   :
+							  poi_id
+							  city_id
+							  name
+							  lat
+							  long
+							  wiki_url
+						cat   :
+							  cat_id
+							  name
+							  type
+						image :
+							  img_id
+							  city_id
+							  file
+							  url
+											
+					Relationships:
+						city => poi   : (1-to-many    - poi requires the cities location details, to be able to find a city poi that is in that location),
+						poi => cat	  : (many-to-many - cat requires the details of the located poi, and saves that location)
+						cat => images : (many-to-many -  images requires the details of cat, to display the associated image)
+
+						poi   : (To hold the details of the points of interest associated with the city entity)
+						cat   : (To hold the details of the categories associated with the poi entity) 
+						image : (To hold a cities point of interest images),
+									
+				End Conceptual ER model:  
+				
+				Start Logical ER model:	
+				
+				*PK = primary keycap
+				*FK = foreign key
+				
+					   Attributes:
+						city  :
+							  city_id (varchar 8) PK
+							  name (varchar 32)
+							  country (varchar 32)
+							  population (int 11)
+							  long (varchar 32)
+							  lat (10, 6)
+							  currency (10, 6)
+						poi   :
+							  poi_id (varchar 8) PK
+							  city_id (varchar 8) FK
+							  name (varchar 32)
+							  lat(10, 6)
+							  long (10, 6)
+							  wiki_url (varchar 64)
+						cat   :
+							  cat_id  (varchar 8) PK
+							  poi_id (varchar 8) FK
+							  name  (varchar 32)
+							  type  (varchar 32)
+						image :
+							  img_id  (varchar 8) PK
+							  city_id  (varchar 8) FK
+							  file  (blob)
+							  url  (longtext)
+							  
+				End Logical ER model:	
+			</solutions>
+            <!-- integer required between 1 and 120 -->
+            <hours_effort>2</hours_effort>
+        </component>
+		
+		
+        <component type="Database Implementation">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+            <description> 
+				In this phase, 'the databse design model' above is implemented physically. And data is added into each entity or table.
+			</description>
+            <problems> 
+				Table fields must be populated with relevant data.
+			</problems>
+            <solutions> 
+				Start City-Poi-Cat-Image Table Row Example:	
+				
+				*PK = primary keycap
+				*FK = foreign key
+				
+					   Attributes:
+						city  :
+							  city_id (varchar 8) PK
+							  name (varchar 32)
+							  country (varchar 32)
+							  population (int 11)
+							  long (varchar 32)
+							  lat (10, 6)
+							  currency (10, 6)
+							  
+							  row ( A, Cheshire, United Kingdom, 673781, Pound, 53.232601, -2.6103000)
+							  
+						poi   :
+							  poi_id (varchar 8) PK
+							  city_id (varchar 8) FK
+							  lat(10, 6)
+							  long (10, 6)
+							  wiki_url (varchar 64)
+							  
+							  row ( 1, A, 53.2631, -2.8816, empty)
+							  
+						cat   :
+							  cat_id  (varchar 8) PK
+							  poi_id (varchar 8) FK
+							  name  (varchar 32)
+							  type  (varchar 32)
+							  
+							  row ( 1, 1, Vue, Cinema)
+							  
+						image :
+							  img_id  (varchar 8) PK
+							  cat_id  (varchar 8) FK
+							  file  (blob)
+							  url  (longtext)
+							  
+							  row (1, 1, image_file, http://hello.anfnabfabfafbefsfjnef.png)
+							  
+							  
+				End City-Poi-Cat-Image Table Row Example:
+				
+				The rest of the Table is populated in the same way as the above examples of each row for a in a specific table. 
+				This process of adding data manually took a lot of time and is not efficient, as a group we discussed,
+				that perhaps we should find a new way to gather this data automatically. But ofc supposing that you are a client who wants to add data manually this is not a bad option.
+				But our idea is to use an API, to return missing values in a database. For example, we can search a 'city', then define the informations of the city that we want, for example,
+				information like population and currency is very easy to find via search algorithms and insert into database. Unfortutuently, we found the workload increasing with this idea, 
+				with little time to work with and less contribution from team members. We decided to simply populate the entire database manually.
+			
+			</solutions>
+            <hours_effort>2</hours_effort>
+        </component>
+		
+        <component type="HTML Design &amp; Markup">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+            <description> 
+				In this phase, html Markup language is used to design how two maps are displayed on the website. 
+			</description>
+            <problems> 
+				1)  Display (at least two) maps showing the towns/cities you have selected.	
+			</problems>
+            <solutions> 
+			
+				Start create HTML Styled Container: 
+				
+					We created two containers, by using the html div element. In the head of our html document, we added a styling for the containers. 
+					Our containers call the ID of the html style we have defined and takes that style as the container layout when the site is loaded.
+					Inside this container element, we add another div element. This element specificies the ID that will actually hold the map to be loaded within
+					the container created. 
+					We then addedd another element in this container, by using the html span tag, at the end of each container we want to show some information of the name of the city that is displayed,
+					and also the current weather of that city. 
+					Overall we now have a design and implemtation of 2 containers that can hold 2 maps at the same time, where also weather and city information can be added.
+					
+				End create HTML Styled Container: 
+			</solutions>
+            <hours_effort>2</hours_effort>
+        </component>
+		
+        <component type="PHP Coding">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+            <description> 
+			
+				PHP queries and stores data from the database which is then passed over and used by javascript.
+				
+			</description>
+            <problems> 
+
+				Configuration file 		    : 
+						1)  should hold application-wide data such as API's used, API keys (if used), database and other configuration data
+						
+				Mapping			  		    : 
+						2a) Should use a mapping API to display (at least two) maps showing the towns/cities you have selected.
+						2b) 6(+) places of interest should be displayed on map from dataset.
+						2c) MouseOver or Click on each 6(+) Should show a places information from external resource or your own database.
+				
+				Weather						: 
+						1) Use a weather API to generate a display of the current and forecast weather for the your selected town/city and its twins. 
+						
+					
+			</problems>
+            <solutions> 
+				 Start configuration file			:
+					data held: 
+						DATABASE_CONNECTION : 
+							We have many seperate files that require access to the database, therefore it makes to 
+							define 1 connection to a specific databse where our data is held. Every other file will rely on this definition 
+							in the config file.
+						
+						API_KEYS		    : 
+							To display google maps a key required.
+							To display weather information a key is required, there is two keys 1 for forecast and 1 for current weather.
+							
+						FUNCTIONS			: 
+							ACCESS_MAPS: This functions specifies the url and gets the defined keys to access maps.
+							ACCESS_WEATHER: This function specifies the url and gets the defined keys to access weather information.
+							GET_WEATHER_INFOR: in this function we define what we want to get from the ACCESS_WEATHER FUNCTION mainly temprature and description.
+
+
+					All the informstion held in the configuration file is central to the application, without the config file -> maps do not load, 
+					weather infor does not load, database access is not available. Basically there is no application. 
+					
+					End configuration file			:
+
+					Start Mapping	: 
+					
+						2a) :
+							Create query to get city names from database and populate the results into HTML SELECT BOX:
+							
+								The idea behind creating a select box , is to be able to choose the two cities that we want to display in each map.
+								So there is two selectboxes, if you select "Chesire" in select box 1, and "Lanchashire" in select box 2. Then
+								Map 1 will show "Cheshire" and Map 2 will show "Lanchashire". 
+							
+							Create query to get city location from database using select box information:
+							
+								So once we select our two cities in the database, we want to use this input data. 
+								in a new query, this query will look into the database for the input city and return
+								the cities location details. In this case lat and lng. Once we have the lat and lng of the city.
+								We pass these values to our JAVASCRIPT. This is where the function to display our map is located,
+								by passing these values, we are telling our JAVASCRIPT the location we want displayed in the map.
+						2b) :
+							Create query to get city ID of the selected cities: 
+							
+								We need the ID as a form a foreign key that we are going to use in the next query.
+							
+							Create query to get the Point of interest using the foreign key above.
+							
+								The relationship is that -> for each city there are many points of interests. 
+								In this way when we select a city -> we have also selected its points of interest. 
+								Similarally we then pass the Points of interests values to JAVASCRIPT, these values will be used as markers on our map.
+								The values are th location details of the POI, using lat and lng.
+						2c) :
+							Add Zend framework: 
+								The framework allows us to have access and search through wikipedia using PHP. 
+								We created a search algorithm that takes in query results from the database, the values are used to search the descriptions associated with POI in the dataset.
+								This way we dont have to manually add descpritions of our cities points of interests. All these descriptions and values are passed to the JAVASCRIPT, to be 
+								displayed in the browser.
+								
+					End Mapping		: 
+	
+			</solutions>
+            <hours_effort>48</hours_effort>
+        </component>
+		
+        <component type="Javascript / JSON Coding">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+            <description> 
+			
+				Javascript displays the map with relevant data from PHP server side.
+				
+			</description>
+            <problems> 
+
+				Mapping:
+					1) Diplay Map
+					2) Display Map Markers
+					3) Display Map Descriptions
+
+			</problems>
+			
+            <solutions> 
+				
+				NOTE: IN THIS PROJECT THE MAIN USE OF JAVASCRIPT HAS BEEN TO DISPLAY THE DATA PROCESSED BY PHP. THEREFORE
+				OUR JAVASCRIPT MAINLY CONTAINS ALGORITHMS TO GET THE DATA, STORE IT IN JAVASCRIPT FORMAT, AND USE IT FOR DISPLAY.
+				
+				Mapping:
+
+					FUNCTION_DRAWMAP: 
+						In this function we create our two maps, then specify the location details (lat, lng) to be displayed. this function
+						makes it possible to display a city that been selected in the selectbox. 
+				
+						MARKERS -> We use a for loop to handle the 6 marker values from our php. In the php we saved our POI values in an array.
+						So in javascript we must pass this array to a new javascript format array . We use json encode to pass these values correctly.
+						The for loop uses our MAP central position which is the selected city, and adds markers to the Map generated above. 
+						
+						INFORWINDOW -> In the same loop, we get another array of descriptions passed from php to javascript. The description in the first
+						element of the array represents the first element in the Marker array. Therefore if in our loop, we display our first Marker, 
+						we should display the first Description too. We dont need need to check if the first Marker has the correct descriptions. 
+						But  this is the kind of information in our Code that is only relevant to the developer and not the client. Perhaps, the 
+						client thinks there is some sort of search algorithm to ensure that the Markers information is correct. 
+				
+			</solutions>
+            <hours_effort>24</hours_effort>
+        </component>
+		
+        <component type="RSS Feed">
+        <member id="18024016" name="Genius Kimu"/>
+        <member id="17024590" name="Joe Whitworth "/>
+            <description>
+				The rss feed shows all current data regarding your cities and places of interest currently held in the database.	
+			</description>
+            <problems> 
+				
+				query entire twin-cities database and output it in an rss xml format
+				
+			</problems>
+            <solutions> 
+			
+					CREATE MULTIPLE QUERY: 
+						TABLE CITY -> SELECT EVERYTHING FROM CITY Table
+						TABLE POI -> SELECT EVERYTHING FROM POI Table
+						TABLE CAT -> SELECT EVERYTHING FROM CAT Table
+						TABLE IMAGES -> SELECT EVERYTHING FROM IMAGES Table
+				
+					ADD_QUERY_DATA_TO_RSS_XML_DOCUMENT:
+					
+						Using PHP echo, we can construct a valid rss xml document, by using the correct tags that define a valid rss feed.
+						The most important part is the tags we use for our own data as they have to be associated with our database. 
+						This solution is simple, we also discussed about a way to use mysql dump, and the use that  backup as the source for our rss feed.
+						But that was more complicated as it required mysql tools that students may not have access to on the uni computer systems.
+					
+				</solutions>
+            <hours_effort>2</hours_effort>
+        </component>
+    </group>
+	
+    <!-- This section gives a link to group components, lists the techohnolgies used and 
+        points to any number of source files. Note that the more that these links work - 
+        the higher the mark for this section. Of course - the base_url link must work!! -->
+    <application>
+        <!-- Make sure the base_url for the main application is reachable as 
+            https://isa.cems.uwe.ac.uk/~a-student/dsa/assignment/ -->
+        <base_url>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/index.php</base_url>
+        <!-- a list of up to 8 technologies used (see schema) -->
+        <technologies>
+            <tech>php</tech>
+            <tech>html5</tech>
+            <tech>xml</tech>
+        </technologies>
+        <config_file>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/config/config.php</config_file>
+
+        <!-- URL of the Data Model - could be a HTML page with an image file or a gif/png file-->
+        <dm_source>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/datamodel.png</dm_source>
+		
+        <source_files>
+		
+			<file>
+                <name>config.php</name>
+                <purpose>main application configuration file</purpose>
+                <!-- source file should in a browser viewable format (e.g .phps, .xml, .txt, etc.) -->
+                <source_url>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/config.phps</source_url>
+            </file>
+			
+            <file>
+                <name>index.php</name>
+                <purpose>main application file</purpose>
+                <!-- source file should in a browser viewable format (e.g .phps, .xml, .txt, etc.) -->
+                <source_url>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/index.phps</source_url>
+            </file>
+			
+            <file>
+                <name>map.php</name>
+                <purpose>holds required functions</purpose>
+                <source_url>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/map/map.phps</source_url>
+            </file>
+			
+			<file>
+                <name>feed.php</name>
+                <purpose>holds required functions</purpose>
+                <source_url>https://isa.cems.uwe.ac.uk/~g2-kimu/dsa/assignment/rss/feed.phps</source_url>
+            </file>
+			
+        </source_files>
+		
+    </application>
+
+    <!-- something about any learning outcomes achieved and any other overall comments -->
+    <overall_comments> 
+         This project only included contribution from 2 out 4 memebers of the group.
+		 No responses or communication was receieved from the the 2 individuals who have not taken part in this group project.
+		 With a limited number of members working on the project, we have failed to meet our target goals but ensured that
+		 the necessary parts of the project are functional and worth submitting. Overall the amount of work was overwelming,
+		 because of very little experience with the technologies used. However, we walk away with a greater appreciation
+		 and understanding of the capabilities PHP and JAVASCRIPT. #To infinity and beyond. 
+		 
+		 The Parkerian Hexad: 
+			If our application was to be deployed, how would it tackle the following attributes:
+			
+				Confidentiality :
+					We have created a configuration file that holds information required to access the application. In this way for example,
+					the application could have all necessary code to extract data from the database. This is impossible because only the owner or
+					admin of the database has access to the database as is defined within the application. Currently our system does not contain a log in system,
+					but should a client specify that this application is not for individual use or that there is a risk of this application falling into the wrong hands.
+					We can simply add a user session, in this way - the defined admin details to connect to the database would need to be entered. This is the most,
+					effective way to ensure that there is no unauthorised access. But in this application we have the assumption that the user of the application,
+					is the only authorised user. Therefore we have pin pointed our application to straight away access the database under this users authorisation details. 
+				
+				Integrity	    :
+					We are handling data from our database and external sources. everything that is displayed within the application is not modifiable unless a user
+					has access to the server side of the programming. When passing values between PHP and JAVASCRIPT we are using POST method instead of GET method. 
+					"GET parameters are passed via URL. This means that parameters are stored in server logs, and browser history. 
+					When using GET, it makes it very easy to alter the data being submitted the the server as well, as it is right there in the address bar to play with. "
+					The added security of the post method ensures that no one can alter or edit our data. Post simply works within the html body to pass information to
+					different places.
+					
+				Authenticity    :
+					Our configuration file is a definition of the claim of originality or authorship of information.
+					Should the information changed in any way shape or form, then acessibility to the our data becomes difficult.
+					
+				Availability    :
+					This application does not store any data locally, this means that information is always timely. 
+					A possible issue, would be if there is an internet problem. In this case, we have thought about the possibility
+					of creating regular mysql dumps as a backup to act as offline an mode access to data. However with limited,
+					permissions to such an application we can only have this as an online-application. But the most important aspect, 
+					is that in any event of the application crashing or not working as expected data is not lost or affected. 
+					The application only retrieves data and does not modify. 
+
+    </overall_comments>
+</group_metafile>
+<!-- DSA Assignment Group Metadata File Example, 2019-20 -->
+<!-- author: prakash.chatterjee@uwe.ac.uk -->

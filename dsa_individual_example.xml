@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<individual_metafile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="http://isa.cems.uwe.ac.uk/~p-chatterjee/2019-20/modules/dsa/assignment/dsa_individual_schema.xsd">
+    
+    <!-- This file is an example of a valid individual metadata file. 
+    Use this example file as a template and fill with your own data 
+    validating as you go along using Oxygen or some other schema aware editor -->    
+    <group id="w1-ZZ"/>
+    <student id="99999999"/>
+    <!--- List of one or more group components that you contributed to -->
+    <component type="Photo Widget">
+        <description>Sed eu nunc ipsum, nec suscipit lectus. Quisque quis nibh at sem dictum pretium. 
+            Pellentesque augue mauris, lobortis vel elementum quis, consequat tempor felis. 
+            Sed eu nunc ipsum, nec suscipit lectus. Quisque quis nibh at sem dictum  pretium. 
+            Pellentesque augue mauris, lobortis vel elementum quis, consequat tempor felis. .... 
+        </description>
+        <problems> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis lacinia
+            porttitor.Sed eu nunc ipsum, nec suscipit lectus. Quisque quis nibh at sem dictum
+            pretium. Pellentesque augue mauris, lobortis vel elementum quis, consequat tempor felis. ... 
+        </problems>
+        <solutions>Integer dictum diam id ligula aliquet sed dapibus nibh elementum. Pellentesque
+            augue mauris, lobortis vel elementum quis, consequat tempor felis..... 
+        </solutions>
+        <hours_effort>12</hours_effort>
+        <!-- This should be an URL to the working component - maybe part of the base page -->
+        <base_url>http://www.cems.uwe.ac.uk/~an-other/dsa/assignment/index.php</base_url>
+        <technologies>
+            <tech>php</tech>
+            <tech>javascript</tech>
+            <tech>html5</tech>
+        </technologies>
+        <source_files>
+            <file>
+                <name>flickr.php</name>
+                <purpose>to fetch flickr photos</purpose>
+                <source_url>http://www.cems.uwe.ac.uk/~an-other/php/dsa/flickr.phps</source_url>
+            </file>
+            <file>
+                <name>index.html</name>
+                <purpose>main page with embedded photos</purpose>
+                <source_url>http://www.cems.uwe.ac.uk/~an-other/php/dsa/index.html</source_url>
+            </file>
+        </source_files>
+    </component>
+    <security_discussion>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </security_discussion>
+    <individual_comment>This part was done by me and was even easier. It was all just so easy.
+        Surprisingly so. Sed eu nunc ipsum, nec suscipit lectus. Quisque quis nibh at sem dictum
+        pretium. Pellentesque augue mauris, lobortis vel elementum quis, consequat tempor felis.
+    </individual_comment>
+</individual_metafile>
+<!-- DSA Individual Metadata File Example, 2019-20 -->
+<!-- author: prakash.chatterjee@uwe.ac.uk -->
